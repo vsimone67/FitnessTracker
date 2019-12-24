@@ -1,0 +1,52 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: dietservice
+  namespace: fitnesstracker
+spec:
+  selector:
+    matchLabels:
+      app: dietservice
+  replicas: 15
+  minReadySeconds: 10
+  template:
+    metadata:
+      labels:
+        app: dietservice
+    spec:
+      containers:
+        - name: dietservice-pod
+          image: vsimone67/dietservice:latest
+          imagePullPolicy: "Always"
+          ports:
+            - name: http
+              containerPort: 80
+          env:
+            - name: "appdirectory"
+              value: "/app/settings/"
+          volumeMounts:
+            - name: configs
+              mountPath: "/app/settings"
+      volumes:
+            - name: configs
+              projected:
+                sources:
+                  - configMap:
+                      name: appsettings-dietservice
+                  - secret:
+                      name: appsettings-secret-dietservice
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: dietservice-svc
+  namespace: fitnesstracker
+spec:
+  ports:
+    - name: http
+      port: 80
+      protocol: TCP
+      targetPort: 80
+  selector:
+    app: dietservice
+  type: LoadBalancer

@@ -1,0 +1,50 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: apigateway
+  namespace: fitnesstracker
+spec:
+  selector:
+    matchLabels:
+      app: apigateway
+  replicas: 15
+  minReadySeconds: 10
+  template:
+    metadata:
+      labels:
+        app: apigateway
+    spec:
+      containers:
+        - name: apigateway-pod
+          image: vsimone67/apigateway:latest
+          imagePullPolicy: "Always"
+          ports:
+            - name: http
+              containerPort: 80
+          env:
+            - name: "appdirectory"
+              value: "/app/settings/"
+          volumeMounts:
+            - name: configs
+              mountPath: "/app/settings"
+      volumes:
+            - name: configs
+              projected:
+                sources:
+                  - configMap:
+                      name: appsettings-apigateway                 
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: apigateway-svc
+  namespace: fitnesstracker
+spec:
+  ports:
+    - name: http
+      port: 80
+      protocol: TCP
+      targetPort: 80
+  selector:
+    app: apigateway
+  type: LoadBalancer

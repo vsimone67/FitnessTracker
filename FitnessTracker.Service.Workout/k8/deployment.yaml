@@ -1,0 +1,52 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: workoutservice
+  namespace: fitnesstracker
+spec:
+  selector:
+    matchLabels:
+      app: workoutservice
+  replicas: 15
+  minReadySeconds: 10
+  template:
+    metadata:
+      labels:
+        app: workoutservice
+    spec:
+      containers:
+        - name: workoutservice-pod
+          image: vsimone67/workoutservice:latest
+          imagePullPolicy: "Always"
+          ports:
+            - name: http
+              containerPort: 80
+          env:
+            - name: "appdirectory"
+              value: "/app/settings/"
+          volumeMounts:
+            - name: configs
+              mountPath: "/app/settings"
+      volumes:
+            - name: configs
+              projected:
+                sources:
+                  - configMap:
+                      name: appsettings-workoutservice
+                  - secret:
+                      name: appsettings-secret-workoutservice
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: workoutservice-svc
+  namespace: fitnesstracker
+spec:
+  ports:
+    - name: http
+      port: 80
+      protocol: TCP
+      targetPort: 80
+  selector:
+    app: workoutservice
+  type: LoadBalancer

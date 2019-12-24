@@ -1,0 +1,51 @@
+{
+  "compileOnSave": false,
+  "compilerOptions": {
+    "baseUrl": "./",
+    "paths": {
+      "@diet/*": [ "src/app/diet/*" ],
+      "@diet/components/*": [ "src/app/diet/components/*" ],
+      "@diet/service/*": [ "src/app/diet/services/*" ],
+      "@diet/module/*": [ "src/app/diet/*" ],
+      "@diet/actions/*": [ "src/app/diet/actions/*" ],
+      "@diet/state/*": [ "src/app/diet/state/*" ],
+      "@diet/models/*": [ "src/app/diet/models/*" ],
+      "@models/*": [ "src/app/models/*" ],
+      "@workout/*": [ "src/app/workout/*" ],
+      "@workout/components/*": [ "src/app/workout/components/*" ],
+      "@workout/service/*": [ "src/app/workout/services/*" ],
+      "@workout/module/*": [ "src/app/workout/*" ],
+      "@workout/actions/*": [ "src/app/workout/actions/*" ],
+      "@workout/state/*": [ "src/app/workout/state/*" ],
+      "@workout/models/*": [ "src/app/workout/models/*" ],
+      "@shared/*": [ "src/app/shared/*" ],
+      "@shared/components/*": [ "src/app/shared/components/*" ],
+      "@shared/service/*": [ "src/app/shared/services/*" ],
+      "@shared/directives/*": [ "src/app/shared/directives/*" ],
+      "@shared/directives/models*": [ "src/app/shared/directives/models/*" ],
+      "@shared/module/*": [ "src/app/shared/*" ],
+      "@shared/models/*": [ "src/app/shared/models/*" ],
+      "@layout/*": [ "src/app/layout/*" ]
+    },
+    "outDir": "./dist/out-tsc",
+    "sourceMap": true,
+    "declaration": false,
+    "downlevelIteration": true,
+    "experimentalDecorators": true,
+    "module": "esnext",
+    "moduleResolution": "node",
+    "importHelpers": true,
+    "target": "es2015",
+    "typeRoots": [
+      "node_modules/@types"
+    ],
+    "lib": [
+      "es2018",
+      "dom"
+    ]
+  },
+  "angularCompilerOptions": {
+    "fullTemplateTypeCheck": true,
+    "strictInjectionParameters": true
+  }
+}

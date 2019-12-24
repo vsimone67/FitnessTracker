@@ -1,0 +1,1 @@
+kubectl create configmap appsettings-apigateway --namespace fitnesstracker --from-file=../../configfiles/apigateway/appsettings.json
