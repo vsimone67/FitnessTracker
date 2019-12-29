@@ -19,7 +19,7 @@ namespace FitnessTracker.Common.MassTransit
         {
             _serviceBus = Bus.Factory.CreateUsingRabbitMq(sbc =>
             {
-                var host = sbc.Host(new Uri($"rabbitmq://{_serviceBusSettings.ServerName}:/"), h =>
+                var host = sbc.Host(new Uri($"rabbitmq://{_serviceBusSettings.ServerName}"), h =>
                 {
                     h.Username(_serviceBusSettings.UserName);
                     h.Password(_serviceBusSettings.Password);

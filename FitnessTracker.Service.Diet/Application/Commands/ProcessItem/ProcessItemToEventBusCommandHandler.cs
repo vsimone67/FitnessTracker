@@ -11,6 +11,7 @@ namespace FitnessTracker.Application.Diet.Diet.Commands
     {
         private readonly IServiceBus _serviceBus;
         private readonly ILogger<ProcessItemToEventBusCommandHandler> _logger;
+
         public ProcessItemToEventBusCommandHandler(IServiceBus eventBus, ILogger<ProcessItemToEventBusCommandHandler> logger)
         {
             _serviceBus = eventBus;
@@ -20,14 +21,14 @@ namespace FitnessTracker.Application.Diet.Diet.Commands
         public async Task<Unit> Handle(ProcessItemToEventBusCommand request, CancellationToken cancellationToken)
         {
             _logger.LogInformation("Writing Process Item To The Service Bus");
-            var evt = new AddNewFoodEvent
+            var evt = new EditFoodItem
             {
-                AddedFoodItem = request.FoodInfo
+                EditedFoodItem = request.FoodInfo
             };
 
-            await _serviceBus.PublishMessage<AddNewFoodEvent>(evt);
+            await _serviceBus.PublishMessage<EditFoodItem>(evt);
 
             return await Task.FromResult(new Unit()).ConfigureAwait(false);
-        }
+        }0
     }
 }

@@ -7,7 +7,7 @@ import { Reps } from '../../../models'
   template: `<span *ngFor="let rep of reps">{{rep.Name}} ({{rep.TimeToNextExercise}})</span>`
 })
 export class RepsFieldComponent implements AgRendererComponent {
-  private reps: Reps;
+  public reps: Reps;
 
   agInit(params: any): void {
     this.reps = params.data.Reps;

@@ -14,18 +14,18 @@ import { fail } from 'assert';
 })
 export class AddSetComponent extends BaseComponent implements OnInit {
   @Input() workout: Workout;
-  private _set: set;
+  public _set: set;
   dialog: any;
   exercises: Array<ExerciseName>;
   currentExercise: ExerciseName;
   currentMeasure: DropDownModel;
   currentSet: SetName;
   measure: Array<DropDownModel>;
-  private selectedMeasure: DropDownModel;
-  private selectedExercise: Exercise;
-  private selectedSet: set;
-  private reps: Array<Reps>;
-  private sets: Array<SetName>;
+  public selectedMeasure: DropDownModel;
+  public selectedExercise: Exercise;
+  public selectedSet: set;
+  public reps: Array<Reps>;
+  public sets: Array<SetName>;
   private repNames: Array<RepsName>;
   private isExerciseAdded: boolean;
   selectedRep: RepsName;

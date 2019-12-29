@@ -9,7 +9,7 @@ import { Exercise } from '../../../models'
                <b *ngFor="let rep of exercise.Reps">{{rep.Name}} ({{rep.TimeToNextExercise}})..</b></span>`
 })
 export class SetFieldComponent implements AgRendererComponent {
-  private Exercise: Exercise;
+  public Exercise: Exercise;
 
   agInit(params: any): void {
     this.Exercise = params.data.Exercise;

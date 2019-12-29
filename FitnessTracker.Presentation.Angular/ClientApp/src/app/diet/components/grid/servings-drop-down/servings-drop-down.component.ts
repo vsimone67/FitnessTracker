@@ -18,10 +18,10 @@ import { SavedMenu } from "../../../models";
 })
 export class ServingDropDownComponent implements AgRendererComponent {
   private cell: any;
-  private currentSelection: string;
+  public currentSelection: string;
   private cellName: string;
 
-  private servings: Array<string> = [
+  public servings: Array<string> = [
     "0.5",
     "1",
     "1.5",

@@ -105,14 +105,16 @@ namespace FitnessTracker.Application.Workout.Queries
         {
             int retVal = 0;
 
-            if (dailyWorkout.Count() > 0)
+            if (dailyWorkout.Any())
             {
-                //var info = dailyWorkout.First().DailyWorkoutInfo.OrderByDescending(x => x.DailyWorkoutId);
-                var workout = dailyWorkout.First().DailyWorkoutInfo.Where(exp => exp.ExerciseId == exerciseId && exp.SetId == setId && exp.RepsId == repsId);
-
-                if (workout.Any())
+                if (dailyWorkout.First() != null) // EF will return a row with null values
                 {
-                    retVal = workout.First().WeightUsed;
+                    var workout = dailyWorkout.First().DailyWorkoutInfo.Where(exp => exp.ExerciseId == exerciseId && exp.SetId == setId && exp.RepsId == repsId);
+
+                    if (workout.Any())
+                    {
+                        retVal = workout.First().WeightUsed;
+                    }
                 }
             }
             return retVal;

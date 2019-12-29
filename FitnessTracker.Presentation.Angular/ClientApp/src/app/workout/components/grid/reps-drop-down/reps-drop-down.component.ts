@@ -15,9 +15,9 @@ import { RepsName } from '../../../models';
 })
 export class RepsDropDownComponent implements AgRendererComponent {
   private cell: any;
-  protected currentSelection: RepsName;
+  public currentSelection: RepsName;
 
-  private repNames: Array<RepsName>;
+  public repNames: Array<RepsName>;
 
   constructor(private _workoutService: WorkoutService) {
   }

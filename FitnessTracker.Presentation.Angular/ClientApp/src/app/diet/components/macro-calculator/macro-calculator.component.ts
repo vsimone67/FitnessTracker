@@ -17,59 +17,59 @@ import { MetabolicInfoState } from "../../state/metabolic-info.state";
 })
 export class MacroCalculatorComponent extends BaseComponent implements OnInit {
   dialog: any;
-  private metabolicInfo: Array<MeatabolicInfo>;
-  private weight: number;
-  private activityLevel: number;
-  private bmr: number;
-  private dcr: number;
+  public metabolicInfo: Array<MeatabolicInfo>;
+  public weight: number;
+  public activityLevel: number;
+  public bmr: number;
+  public dcr: number;
 
-  private calorieDeficitPerCut: number;
-  private calorieDeficitPerMaintain: number;
-  private calorieDeficitPerGain: number;
+  public calorieDeficitPerCut: number;
+  public calorieDeficitPerMaintain: number;
+  public calorieDeficitPerGain: number;
 
-  private calorieDeficitCut: number;
-  private calorieDeficitMaintain: number;
-  private calorieDeficitGain: number;
+  public calorieDeficitCut: number;
+  public calorieDeficitMaintain: number;
+  public calorieDeficitGain: number;
 
-  private newCalorieCut: number;
-  private newCalorieMaintain: number;
-  private newCalorieGain: number;
+  public newCalorieCut: number;
+  public newCalorieMaintain: number;
+  public newCalorieGain: number;
 
-  private fatPerCut: number;
-  private fatPerMaintain: number;
-  private fatPerGain: number;
+  public fatPerCut: number;
+  public fatPerMaintain: number;
+  public fatPerGain: number;
 
-  private fatCaloriesCut: number;
-  private fatCaloriesMaintain: number;
-  private fatCaloriesGain: number;
+  public fatCaloriesCut: number;
+  public fatCaloriesMaintain: number;
+  public fatCaloriesGain: number;
 
-  private fatGramsCut: number;
-  private fatGramsMaintain: number;
-  private fatGramsGain: number;
+  public fatGramsCut: number;
+  public fatGramsMaintain: number;
+  public fatGramsGain: number;
 
-  private proteinPerCut: number;
-  private proteinPerMaintain: number;
-  private proteinPerGain: number;
+  public proteinPerCut: number;
+  public proteinPerMaintain: number;
+  public proteinPerGain: number;
 
-  private proteinCaloriesCut: number;
-  private proteinCaloriesMaintain: number;
-  private proteinCaloriesGain: number;
+  public proteinCaloriesCut: number;
+  public proteinCaloriesMaintain: number;
+  public proteinCaloriesGain: number;
 
-  private proteinGramsCut: number;
-  private proteinGramsMaintain: number;
-  private proteinGramsGain: number;
+  public proteinGramsCut: number;
+  public proteinGramsMaintain: number;
+  public proteinGramsGain: number;
 
-  private carbsPerCut: number;
-  private carbsPerMaintain: number;
-  private carbsPerGain: number;
+  public carbsPerCut: number;
+  public carbsPerMaintain: number;
+  public carbsPerGain: number;
 
-  private carbsCaloriesCut: number;
-  private carbsCaloriesMaintain: number;
-  private carbsCaloriesGain: number;
+  public carbsCaloriesCut: number;
+  public carbsCaloriesMaintain: number;
+  public carbsCaloriesGain: number;
 
-  private carbsGramsCut: number;
-  private carbsGramsMaintain: number;
-  private carbsGramsGain: number;
+  public carbsGramsCut: number;
+  public carbsGramsMaintain: number;
+  public carbsGramsGain: number;
 
   @Select(MetabolicInfoState.metabolicInfoList)
   metabolicInfoList$: Observable<Array<MeatabolicInfo>>;

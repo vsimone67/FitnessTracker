@@ -19,7 +19,7 @@ import { SetMeals } from "../../../actions/diet.actions";
 export class MealCheckBoxComponent implements AgRendererComponent {
   private cellName: string;
   private cell: any;
-  private isChecked: boolean;
+  public isChecked: boolean;
   private field: string;
   private nutritionInfo: Array<NutritionInfo>;
 

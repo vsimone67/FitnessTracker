@@ -13,6 +13,7 @@ namespace FitnessTracker.Application.Workout.Workout.Command
         private readonly IServiceBus _serviceBus;
         private readonly IMapper _mapper;
         private readonly ILogger<SaveDailyWorkoutToEventBusCommandHandler> _logger;
+
         public SaveDailyWorkoutToEventBusCommandHandler(IServiceBus eventBus, IMapper mapper, ILogger<SaveDailyWorkoutToEventBusCommandHandler> logger)
         {
             _serviceBus = eventBus;
