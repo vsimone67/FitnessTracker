@@ -21,14 +21,14 @@ namespace FitnessTracker.Application.Diet.Diet.Commands
         public async Task<Unit> Handle(ProcessItemToEventBusCommand request, CancellationToken cancellationToken)
         {
             _logger.LogInformation("Writing Process Item To The Service Bus");
-            var evt = new EditFoodItem
+            var evt = new EditFoodItemEvent
             {
                 EditedFoodItem = request.FoodInfo
             };
 
-            await _serviceBus.PublishMessage<EditFoodItem>(evt);
+            await _serviceBus.PublishMessage<EditFoodItemEvent>(evt);
 
             return await Task.FromResult(new Unit()).ConfigureAwait(false);
-        }0
+        }
     }
 }

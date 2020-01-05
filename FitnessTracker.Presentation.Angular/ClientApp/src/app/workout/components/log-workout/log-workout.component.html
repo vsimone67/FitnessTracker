@@ -29,8 +29,10 @@
             </tr>
             <tr *ngFor="let exercise of set.Exercise">
               <td class="mdl-data-table__cell--non-numeric">{{exercise.Name}} ({{exercise.Reps.length}})</td>
-              <td class="mdl-data-table__cell--non-numeric" *ngFor="let rep of exercise.Reps"><b *ngIf="rep.WriteRep">{{rep.Name}}<br /></b>{{exercise.Measure}}:
-                <input type="text" [(ngModel)]="rep.Weight" style="width:40px">({{rep.TimeToNextExercise}})</td>
+              <td class="mdl-data-table__cell--non-numeric" *ngFor="let rep of exercise.Reps">
+                <b *ngIf="rep.WriteRep">{{rep.Name}}<br /></b>{{exercise.Measure}}:
+                <input type="text" [(ngModel)]="rep.Weight" style="width:40px">({{rep.TimeToNextExercise}})
+              </td>
               <td class="mdl-data-table__cell--non-numeric" *ngFor="let blank of exercise.AdditionalColumns">&nbsp;</td>
             </tr>
           </tbody>
@@ -40,6 +42,6 @@
     </section>
   </div>
   <div actions class="mdl-card__actions mdl-card--border" *ngIf="currentWorkout.Set?.length > 0">
-    <button class="mdl-button mdl-js-button mdl-button--accent" (click)="onSubmit()">Save Workout</button>
+    <button id="saveworkout" class="mdl-button mdl-js-button mdl-button--accent" (click)="onSubmit()">Save Workout</button>
   </div>
 </baseLayout>

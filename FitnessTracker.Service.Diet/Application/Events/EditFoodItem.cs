@@ -1,6 +1,6 @@
 ﻿namespace FitnessTracker.Application.Model.Diet.Events
 {
-    public class EditFoodItem
+    public class EditFoodItemEvent
     {
         public FoodInfoDTO EditedFoodItem { get; set; }
     }

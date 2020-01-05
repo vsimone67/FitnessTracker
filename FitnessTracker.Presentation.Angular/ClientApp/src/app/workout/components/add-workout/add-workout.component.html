@@ -41,10 +41,12 @@
         <div class="mdl-cell mdl-cell--8-col ">
           Active: <input type="checkbox"
                          [(ngModel)]="isActive"
+                         id="isactivecheck"
                          [ngModelOptions]="{standalone: true}" />
 
           Clone: <input type="checkbox"
                         [(ngModel)]="isClone"
+                        id="isclonecheck"
                         [ngModelOptions]="{standalone: true}" />
         </div>
       </div>
@@ -53,6 +55,7 @@
         <div class="mdl-cell mdl-cell--12-col addWorkout-gridheight">
           <ag-grid-angular #agGrid
                            class="ag-theme-blue ag-table-addWorkout"
+                           id="addworkouttable"
                            [gridOptions]="gridOptions"
                            (cellClicked)="onCellClicked($event)">
           </ag-grid-angular>
@@ -61,7 +64,7 @@
     </section>
 
     <div actions class="mdl-card__actions mdl-card--border">
-      <button class="mdl-button mdl-js-button mdl-button--accent"
+      <button id="saveworkout" class="mdl-button mdl-js-button mdl-button--accent"
               type="submit"
               (click)="saveWorkout()"
               [disabled]="workout.Set?.length == 0">
