@@ -24,17 +24,23 @@ spec:
           env:
             - name: "appdirectory"
               value: "/app/settings/"
+          livenessProbe:
+            httpGet:
+              path: /health
+              port: 80
+            initialDelaySeconds: 5
+            periodSeconds: 5
           volumeMounts:
             - name: configs
               mountPath: "/app/settings"
       volumes:
-            - name: configs
-              projected:
-                sources:
-                  - configMap:
-                      name: appsettings-workoutservice
-                  - secret:
-                      name: appsettings-secret-workoutservice
+        - name: configs
+          projected:
+            sources:
+              - configMap:
+                  name: appsettings-workoutservice
+              - secret:
+                  name: appsettings-secret-workoutservice
 ---
 apiVersion: v1
 kind: Service

@@ -1,1 +1,2 @@
+kubectl delete configmap appsettings-apigateway --namespace fitnesstracker
 kubectl create configmap appsettings-apigateway --namespace fitnesstracker --from-file=../../configfiles/apigateway/appsettings.json
