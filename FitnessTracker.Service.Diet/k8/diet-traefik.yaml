@@ -1,0 +1,72 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: dietservice
+  namespace: fitnesstracker
+  labels:
+    app: dietservice
+spec:
+  selector:
+    matchLabels:
+      app: dietservice
+  replicas: 15
+  template:
+    metadata:
+      labels:
+        app: dietservice
+    spec:
+      containers:
+        - name: dietservice-pod
+          image: vsimone67/dietservice:latest
+          imagePullPolicy: "Always"
+          ports:
+            - name: web
+              containerPort: 80
+          env:
+            - name: "appdirectory"
+              value: "/app/settings/"
+          livenessProbe:
+            httpGet:
+              path: /health
+              port: 80
+            initialDelaySeconds: 5
+            periodSeconds: 5
+          volumeMounts:
+            - name: configs
+              mountPath: "/app/settings"
+      volumes:
+        - name: configs
+          projected:
+            sources:
+              - configMap:
+                  name: appsettings-dietservice
+              - secret:
+                  name: appsettings-secret-dietservice
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: dietservice
+  namespace: fitnesstracker
+spec:
+  ports:
+    - protocol: TCP
+      port: 80
+      name: web
+  selector:
+    app: dietservice
+---
+kind: IngressRoute
+apiVersion: traefik.containo.us/v1alpha1
+metadata:
+  name: dietservice
+  namespace: fitnesstracker
+spec:
+  entryPoints:
+    - web
+  routes:
+    - match: Host(`diet.titan`)
+      kind: Rule
+      services:
+        - name: dietservice
+          port: 80

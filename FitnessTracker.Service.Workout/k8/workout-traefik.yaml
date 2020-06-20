@@ -1,0 +1,72 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: workoutservice
+  namespace: fitnesstracker
+  labels:
+    app: workoutservice
+spec:
+  selector:
+    matchLabels:
+      app: workoutservice
+  replicas: 15
+  template:
+    metadata:
+      labels:
+        app: workoutservice
+    spec:
+      containers:
+        - name: workoutservice-pod
+          image: vsimone67/workoutservice:latest
+          imagePullPolicy: "Always"
+          ports:
+            - name: web
+              containerPort: 80
+          env:
+            - name: "appdirectory"
+              value: "/app/settings/"
+          livenessProbe:
+            httpGet:
+              path: /health
+              port: 80
+            initialDelaySeconds: 5
+            periodSeconds: 5
+          volumeMounts:
+            - name: configs
+              mountPath: "/app/settings"
+      volumes:
+        - name: configs
+          projected:
+            sources:
+              - configMap:
+                  name: appsettings-workoutservice
+              - secret:
+                  name: appsettings-secret-workoutservice
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: workoutservice
+  namespace: fitnesstracker
+spec:
+  ports:
+    - protocol: TCP
+      port: 80
+      name: web
+  selector:
+    app: workoutservice
+---
+kind: IngressRoute
+apiVersion: traefik.containo.us/v1alpha1
+metadata:
+  name: workoutservice
+  namespace: fitnesstracker
+spec:
+  entryPoints:
+    - web
+  routes:
+    - match: Host(`workout.titan`)
+      kind: Rule
+      services:
+        - name: workoutservice
+          port: 80
