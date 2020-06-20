@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace FitnessTracker.Service.Controllers
 {
-    [Route("api/v1/[controller]")]
+    [Route("[controller]")]
     //[CustomExceptionFilterAttribute]
     public class DietController : Controller
     {
