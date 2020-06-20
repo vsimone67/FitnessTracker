@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: workoutservice
+  name: workoutservice-deployment
   namespace: fitnesstracker
   labels:
     app: workoutservice
@@ -46,7 +46,7 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: workoutservice
+  name: workoutservice-svc
   namespace: fitnesstracker
 spec:
   ports:
@@ -59,14 +59,14 @@ spec:
 kind: IngressRoute
 apiVersion: traefik.containo.us/v1alpha1
 metadata:
-  name: workoutservice
+  name: workoutservice-route
   namespace: fitnesstracker
 spec:
   entryPoints:
     - web
   routes:
-    - match: Host(`workout.titan`)
+    - match: Host(`fitnesstracker.titan`) && PathPrefix(`/workout`)
       kind: Rule
       services:
-        - name: workoutservice
+        - name: workoutservice-svc
           port: 80

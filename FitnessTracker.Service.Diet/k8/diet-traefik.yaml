@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: dietservice
+  name: dietservice-deployment
   namespace: fitnesstracker
   labels:
     app: dietservice
@@ -46,7 +46,7 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: dietservice
+  name: dietservice-svc
   namespace: fitnesstracker
 spec:
   ports:
@@ -59,14 +59,14 @@ spec:
 kind: IngressRoute
 apiVersion: traefik.containo.us/v1alpha1
 metadata:
-  name: dietservice
+  name: dietservice-route
   namespace: fitnesstracker
 spec:
   entryPoints:
     - web
   routes:
-    - match: Host(`diet.titan`)
+    - match: Host(`fitnesstracker.titan`) && PathPrefix(`/diet`)
       kind: Rule
       services:
-        - name: dietservice
+        - name: dietservice-svc
           port: 80
