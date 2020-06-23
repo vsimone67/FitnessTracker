@@ -70,3 +70,8 @@ spec:
       services:
         - name: workoutservice-svc
           port: 80
+    - match: Host(`workout.titan`)
+      kind: Rule
+      services:
+        - name: workoutservice-svc
+          port: 80
