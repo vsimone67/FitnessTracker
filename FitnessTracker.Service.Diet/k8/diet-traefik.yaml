@@ -70,3 +70,8 @@ spec:
       services:
         - name: dietservice-svc
           port: 80
+    - match: Host(`diet.titan`)
+      kind: Rule
+      services:
+        - name: dietservice-svc
+          port: 80
